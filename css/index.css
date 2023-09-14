@@ -1,0 +1,78 @@
+@import url("./reset.min.css");
+
+:root {
+  --darkblue: #2c3e50;
+  --white: #fff;
+  --box-size: 50px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--darkblue);
+  min-height: 100vh;
+  min-width: 360px;
+  width: 100%;
+}
+
+.kinetic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: var(--box-size);
+  height: var(--box-size);
+}
+
+.kinetic::after,
+.kinetic::before {
+  display: inline-block;
+  content: "";
+  border-bottom: var(--box-size) solid transparent;
+  border-left: var(--box-size) solid transparent;
+  border-right: var(--box-size) solid var(--white);
+  border-top: var(--box-size) solid transparent;
+  height: var(--box-size);
+  position: absolute;
+  transform-origin: center;
+  width: var(--box-size);
+}
+
+.kinetic::before {
+  transform: rotate(0);
+  animation-name: rotateA;
+  animation-delay: 0.5s;
+}
+
+.kinetic::after {
+  transform: rotate(90deg);
+  animation-name: rotateB;
+}
+
+.kinetic::after,
+.kinetic::before {
+  animation-timing-function: cubic-bezier(0.5, 1, 0, 1.05);
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes rotateA {
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateB {
+  50% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(450deg);
+  }
+}
